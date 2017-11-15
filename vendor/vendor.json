@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "LrhsetLzLosEAwqJ+TzG84ZqBcc=",
+			"path": "github.com/daviddengcn/go-colortext",
+			"revision": "805cee6e0d43c72ba1d4e3275965ff41e0da068a",
+			"revisionTime": "2016-12-24T03:39:00Z"
+		}
+	],
+	"rootPath": "github.com/maxdevelopment/go_hello"
+}
