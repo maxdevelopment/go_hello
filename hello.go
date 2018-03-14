@@ -2,44 +2,34 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"reflect"
-	//"os"
-	//"strings"
-	//"github.com/daviddengcn/go-colortext"
+	"math/rand"
 )
 
 func main() {
-	stringValue := "24.90"
-	stringToBool, err := strconv.ParseBool(stringValue)
-	stringToFloat, err := strconv.ParseFloat(stringValue, 64)
 
-	intNumber := 34
+	array := [10]int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100}
+	fmt.Printf("created array: %v \narray length: %v\n\n", array, len(array))
 
-	intNumberToStr := strconv.Itoa(intNumber)
+	slice := array[1:5]
+	fmt.Printf("created slice: %v \nslice length: %v\nslice capacity: %v\n\n", slice, len(slice), cap(slice))
 
-	i, err := strconv.ParseFloat(intNumberToStr, 32)
-	intNumberToFloat32 := float32(i)
-	intNumberToFloat64 := float64(i)
-	if err != nil {
-		panic(err)
+	slice[1] = 33
+	fmt.Printf("changed slice element: %v \nslice length: %v\nslice capacity: %v\n\n", slice, len(slice), cap(slice))
+
+	slice = append(slice, 55)
+	fmt.Printf("added slice element: %v \nslice length: %v\nslice capacity: %v\n\n", slice, len(slice), cap(slice))
+
+	arrayMod := [10]float64{1, 2, 3, 4, 5, 6, 7, 8, 9, 0}
+	fmt.Printf("array for modifications: %v\n", arrayMod)
+
+	for i, j := 0, len(arrayMod)-1; i < j; i, j = i+1, j-1 {
+		arrayMod[i], arrayMod[j] = arrayMod[j], arrayMod[i]
 	}
+	fmt.Printf("reversed: %v\n", arrayMod)
 
-	fmt.Printf("%v with type %s\n", stringToBool, reflect.TypeOf(stringToBool))
-	fmt.Printf("%v with type %s\n", stringToFloat, reflect.TypeOf(stringToFloat))
-	fmt.Printf("%v with type %s\n", intNumber, reflect.TypeOf(intNumber))
-	fmt.Printf("%v with type %s\n", intNumberToStr, reflect.TypeOf(intNumberToStr))
-	fmt.Printf("%v with type %s\n", intNumberToFloat32, reflect.TypeOf(intNumberToFloat32))
-	fmt.Printf("%v with type %s\n", intNumberToFloat64, reflect.TypeOf(intNumberToFloat64))
-
-
-
-	//fmt.Println("System environment:")
-	//for _, e := range os.Environ() {
-	//	pair := strings.Split(e, "=")
-	//	fmt.Printf("Name: %s", pair[0])
-	//	ct.Foreground(ct.Yellow, false)
-	//	fmt.Printf(" Value: %s\n", pair[1])
-	//	ct.ResetColor()
-	//}
+	for i := range arrayMod {
+		j := rand.Intn(i + 1)
+		arrayMod[i], arrayMod[j] = arrayMod[j], arrayMod[i]
+	}
+	fmt.Printf("shuffled: %v\n", arrayMod)
 }
